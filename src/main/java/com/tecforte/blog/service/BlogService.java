@@ -54,11 +54,9 @@ public class BlogService {
     @Transactional(readOnly = true)
     public List<BlogDTO> findAll() {
         log.debug("Request to get all Blogs");
-        return blogRepository.findAllWithEagerRelationships().stream()
-            .map(blogMapper::toDto)
-            .collect(Collectors.toCollection(LinkedList::new));
+        return blogRepository.findAllWithEagerRelationships().stream().map(blogMapper::toDto)
+                .collect(Collectors.toCollection(LinkedList::new));
     }
-
 
     /**
      * Get one blog by id.
@@ -69,8 +67,7 @@ public class BlogService {
     @Transactional(readOnly = true)
     public Optional<BlogDTO> findOne(Long id) {
         log.debug("Request to get Blog : {}", id);
-        return blogRepository.findById(id)
-            .map(blogMapper::toDto);
+        return blogRepository.findById(id).map(blogMapper::toDto);
     }
 
     /**
